@@ -2,13 +2,14 @@ import { useState } from "react";
 import HomeHeader from "../components/home/HomeHeader.tsx";
 import SelectLanguages from "../components/ui/SelectLanguages.tsx";
 import useLanguages from "../hooks/useLanguages.tsx";
-import useCourses from "../hooks/useCourses.tsx";
+import useTutors from "../hooks/useTutors.tsx";
+import CourseCard from "../components/ui/CourseCard.tsx";
 
 function HomePage() {
   const [selectedLang, setSelectedLang] = useState("");
   const { languages } = useLanguages();
-  const { dataCourses } = useCourses();
-  console.log({ dataCourses });
+  const { dataTutors } = useTutors();
+  console.log({ dataTutors });
 
   return (
     <div>
@@ -17,7 +18,7 @@ function HomePage() {
       </div>
       <div className="mt-8 px-5">
         <div className="flex items-center gap-4">
-          <h2 className="text-3xl font-bold">Các khóa học</h2>
+          <h2 className="text-3xl font-bold">Lựa chọn gia sư</h2>
           <div>
             <SelectLanguages
               languages={languages}
@@ -26,7 +27,13 @@ function HomePage() {
             />
           </div>
         </div>
-        <div></div>
+        <div className="py-4 grid grid-cols-4 gap-4">
+          {dataTutors?.map((tutor) => (
+            <div key={tutor.id} className="col-span-1">
+              <CourseCard key={tutor.id} dataTutor={tutor} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
