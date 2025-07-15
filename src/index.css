@@ -5,3 +5,10 @@ body {
 h1 {
   @apply text-4xl font-bold text-gray-800;
 }
+.slick-slide {
+  padding: 0px 10px; /* hoặc padding-left nếu muốn cách trái */
+}
+.slick-prev:before,
+.slick-next:before {
+  color: black !important; /* hoặc text-white nếu nền tối */
+}
