@@ -1,27 +1,28 @@
 import HomeIcon from "@mui/icons-material/Home";
-// import SchoolIcon from "@mui/icons-material/School";
+import SchoolIcon from "@mui/icons-material/School";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // import HistoryIcon from "@mui/icons-material/History";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Link, useLocation } from "react-router-dom";
+import configs from "./../../configs/configs";
 const iconStyle = { fontSize: 28, color: "#1a1a1a" };
 const menus = [
   {
     id: 1,
     name: "Trang chủ",
-    pathName: "/",
+    pathName: configs.routes.home,
     icon: <HomeIcon sx={iconStyle} />,
   },
-  //   {
-  //     id: 2,
-  //     name: "Khóa học",
-  //     pathName: "/courses",
-  //     icon: <SchoolIcon sx={iconStyle} />,
-  //   },
+  {
+    id: 2,
+    name: "Gia Sư",
+    pathName: configs.routes.tutor,
+    icon: <SchoolIcon sx={iconStyle} />,
+  },
   {
     id: 3,
     name: "Yêu thích",
-    pathName: "/favorites",
+    pathName: configs.routes.favorites,
     icon: <FavoriteIcon sx={iconStyle} />,
   },
   //   {

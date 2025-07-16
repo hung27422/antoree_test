@@ -3,5 +3,6 @@ const routes = {
   courses: "/courses",
   favorites: "/favorites",
   history: "/history",
+  tutor: "/tutor",
 };
 export default routes;

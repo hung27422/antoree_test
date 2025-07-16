@@ -22,9 +22,11 @@ function useTutors({ page, limit, specialty, minPrice, maxPrice, language }: Use
   }
   if (minPrice) query.append("price_gte", minPrice.toString());
   if (maxPrice) query.append("price_lte", maxPrice.toString());
+
   const { data: dataTutors, isLoading: isLoadingCourses } = useSWR<Tutor[]>(
     `/tutors?${query.toString()}`
   );
+
   return { dataTutors, isLoadingCourses };
 }
 

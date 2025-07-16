@@ -3,10 +3,31 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import GradeIcon from "@mui/icons-material/Grade";
 import type { Tutor } from "../../types/tutors";
 import ModalDetailCourse from "./ModalDetailCourse";
+import useFavorite from "../../hooks/useFavorite";
+import { useMemo } from "react";
 interface CourseCardProps {
   dataTutor: Tutor;
 }
 function CourseCard({ dataTutor }: CourseCardProps) {
+  const { addFavorite, deleteFavorite, dataFavorite } = useFavorite();
+
+  const valueFavorite = {
+    userId: 1,
+    tutorId: dataTutor.id,
+  };
+
+  // Tìm xem tutor đã được yêu thích chưa
+  const favorite = useMemo(
+    () => dataFavorite?.find((item) => item.tutorId === dataTutor.id),
+    [dataFavorite, dataTutor.id]
+  );
+  const handleFavoriteToggle = async () => {
+    if (favorite && favorite.id !== undefined) {
+      await deleteFavorite(String(favorite.id)); // Xóa nếu đã yêu thích
+    } else {
+      await addFavorite(valueFavorite); // Thêm nếu chưa
+    }
+  };
   return (
     <div className="aspect-video w-full cursor-pointer">
       <iframe
@@ -19,16 +40,24 @@ function CourseCard({ dataTutor }: CourseCardProps) {
         allowFullScreen
         className="rounded-t-2xl"
       ></iframe>
-      <div className="flex flex-col bg-gray-200 w-[300px] px-5 py-4 gap-3 rounded-b-2xl group">
+      <div className="flex flex-col bg-gray-200 w-[300px] px-5 py-4 gap-3 rounded-b-2xl">
         <div className="flex items-center justify-between">
           <span className="font-semibold text-lg">{dataTutor.specialty}</span>
-          <div className="relative group cursor-pointer w-fit">
-            <div className="group-hover:hidden block">
-              <FavoriteBorderIcon />
-            </div>
-            <div className="hidden group-hover:block">
-              <FavoriteIcon className="text-red-500 " />
-            </div>
+          <div onClick={handleFavoriteToggle} className="relative group cursor-pointer w-fit">
+            {!favorite ? (
+              <div>
+                <div className="group-hover:hidden block">
+                  <FavoriteBorderIcon />
+                </div>
+                <div className="hidden group-hover:block">
+                  <FavoriteIcon className="text-red-500 " />
+                </div>
+              </div>
+            ) : (
+              <div className="">
+                <FavoriteIcon className="text-red-500 " />
+              </div>
+            )}
           </div>
         </div>
         <span className="text-base text-gray-800">
