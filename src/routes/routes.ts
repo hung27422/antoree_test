@@ -1,7 +1,7 @@
 import HomePage from "../pages/home";
 import Favorite from "../pages/favorite";
-import Tutor from "../pages/tutor";
 import configs from "../configs/configs";
+import Tutor from "../pages/tutor";
 
 const publicRoutes = [
   { path: configs.routes.home, component: HomePage },

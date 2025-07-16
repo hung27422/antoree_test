@@ -1,13 +1,13 @@
 import useSWR from "swr";
 import FavoriteServices from "../services/favoriteServices";
-import type { Favorite } from "../types/favorite";
-type FavoriteInput = Omit<Favorite, "id">;
+import type { IFavorite } from "../types/favorite";
+type FavoriteInput = Omit<IFavorite, "id">;
 function useFavorite() {
   const {
     data: dataFavorite,
     mutate,
     isLoading,
-  } = useSWR<Favorite[]>("/favorites?userId=1&_expand=tutor");
+  } = useSWR<IFavorite[]>("/favorites?userId=1&_expand=tutor");
 
   const addFavorite = async (favorite: FavoriteInput) => {
     try {

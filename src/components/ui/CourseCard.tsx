@@ -1,14 +1,15 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import GradeIcon from "@mui/icons-material/Grade";
-import type { Tutor } from "../../types/tutors";
+import type { ITutor } from "../../types/tutors";
 import ModalDetailCourse from "./ModalDetailCourse";
 import useFavorite from "../../hooks/useFavorite";
 import { useMemo } from "react";
 interface CourseCardProps {
-  dataTutor: Tutor;
+  dataTutor: ITutor;
+  saveToHistory: (tutor: ITutor) => void;
 }
-function CourseCard({ dataTutor }: CourseCardProps) {
+function CourseCard({ dataTutor, saveToHistory }: CourseCardProps) {
   const { addFavorite, deleteFavorite, dataFavorite } = useFavorite();
 
   const valueFavorite = {
@@ -40,7 +41,7 @@ function CourseCard({ dataTutor }: CourseCardProps) {
         allowFullScreen
         className="rounded-t-2xl"
       ></iframe>
-      <div className="flex flex-col bg-gray-200 w-[300px] px-5 py-4 gap-3 rounded-b-2xl">
+      <div className="flex flex-col bg-gray-200 w-[300px] px-5 py-4 gap-3 rounded-b-2xl group">
         <div className="flex items-center justify-between">
           <span className="font-semibold text-lg">{dataTutor.specialty}</span>
           <div onClick={handleFavoriteToggle} className="relative group cursor-pointer w-fit">
@@ -76,7 +77,7 @@ function CourseCard({ dataTutor }: CourseCardProps) {
           </div>
         </div>
         <div className="w-full hidden group-hover:block">
-          <ModalDetailCourse dataTutor={dataTutor} />
+          <ModalDetailCourse dataTutor={dataTutor} saveToHistory={saveToHistory} />
         </div>
       </div>
     </div>

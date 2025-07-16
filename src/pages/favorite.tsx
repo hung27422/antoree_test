@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Card, CardContent, CircularProgress, IconButton, Tooltip } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import type { Favorite } from "../types/favorite";
+import type { IFavorite } from "../types/favorite";
 import useFavorite from "../hooks/useFavorite";
 
 function Favorite() {
@@ -31,7 +31,7 @@ function Favorite() {
     <div className="max-w-5xl mx-auto p-5">
       <h1 className="text-2xl font-bold mb-6">Danh sách khóa học yêu thích</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {dataFavorite.map((fav: Favorite) => (
+        {dataFavorite.map((fav: IFavorite) => (
           <Card key={fav.id} className="relative hover:shadow-lg transition duration-300">
             <CardContent className="p-4 flex flex-col gap-3">
               <iframe

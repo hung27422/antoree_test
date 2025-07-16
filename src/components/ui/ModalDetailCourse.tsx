@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import type { Tutor } from "../../types/tutors";
+import type { ITutor } from "../../types/tutors";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 const style = {
@@ -20,7 +20,8 @@ const style = {
 };
 
 interface ModalDetailCourseProps {
-  dataTutor: Tutor;
+  dataTutor: ITutor;
+  saveToHistory: (tutor: ITutor) => void;
 }
 
 const getLanguageName = (lang: string) => {
@@ -36,18 +37,22 @@ const getLanguageName = (lang: string) => {
   }
 };
 
-export default function ModalDetailCourse({ dataTutor }: ModalDetailCourseProps) {
+export default function ModalDetailCourse({ dataTutor, saveToHistory }: ModalDetailCourseProps) {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const handleRegister = () => {
     alert(`Bạn đã đăng ký học với ${dataTutor.name}`);
   };
+
   return (
     <div>
       <Button
         fullWidth
         variant="contained"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveToHistory(dataTutor);
+          setOpen(true);
+        }}
         sx={{ backgroundColor: "#ff5117", fontWeight: 600 }}
       >
         Xem Chi Tiết

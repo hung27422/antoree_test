@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import type { Tutor } from "../types/tutors";
+import type { ITutor } from "../types/tutors";
 
 interface UseTutorsProps {
   page: number;
@@ -23,7 +23,7 @@ function useTutors({ page, limit, specialty, minPrice, maxPrice, language }: Use
   if (minPrice) query.append("price_gte", minPrice.toString());
   if (maxPrice) query.append("price_lte", maxPrice.toString());
 
-  const { data: dataTutors, isLoading: isLoadingCourses } = useSWR<Tutor[]>(
+  const { data: dataTutors, isLoading: isLoadingCourses } = useSWR<ITutor[]>(
     `/tutors?${query.toString()}`
   );
 

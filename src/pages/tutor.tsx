@@ -7,8 +7,10 @@ import { AppContext } from "../context/AppContextProvider";
 import useTutors from "../hooks/useTutors";
 import CourseCard from "../components/ui/CourseCard";
 import PaginationApp from "../components/ui/Pagination";
+import useHistoryViewedTutors from "../components/hooks/useHistoryViewedTutors";
 
 function Tutor() {
+  const { saveToHistory } = useHistoryViewedTutors(); // dùng hook mới
   const { minPrice, maxPrice, setMaxPrice, setMinPrice } = useContext(AppContext);
   const [page, setPage] = useState(1);
   const [selectedLang, setSelectedLang] = useState("");
@@ -80,7 +82,7 @@ function Tutor() {
       <div className="py-4 grid grid-cols-4 gap-4">
         {dataTutors?.map((tutor) => (
           <div key={tutor.id} className="col-span-1">
-            <CourseCard key={tutor.id} dataTutor={tutor} />
+            <CourseCard key={tutor.id} dataTutor={tutor} saveToHistory={saveToHistory} />
           </div>
         ))}
       </div>
