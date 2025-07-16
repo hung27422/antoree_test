@@ -1,11 +1,16 @@
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import SchoolIcon from "@mui/icons-material/School";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-// import HistoryIcon from "@mui/icons-material/History";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { Link, useLocation } from "react-router-dom";
 import configs from "./../../configs/configs";
+import { Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 const iconStyle = { fontSize: 28, color: "#1a1a1a" };
+
 const menus = [
   {
     id: 1,
@@ -26,10 +31,25 @@ const menus = [
     icon: <FavoriteIcon sx={iconStyle} />,
   },
 ];
-function SideBar() {
-  const location = useLocation();
-  return (
-    <div className="">
+export default function MenuMobile() {
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
+  const DrawerList = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <div className="flex items-center justify-center gap-3 py-4">
+        <Button size="small" variant="contained" sx={{ backgroundColor: "#fff", color: "#000" }}>
+          Đăng Ký
+        </Button>
+
+        <Button size="small" variant="contained" sx={{ backgroundColor: "#ff5117" }}>
+          Đăng Nhập
+        </Button>
+      </div>
+      <Divider />
       <div className="">
         {menus.map((item) => {
           return (
@@ -50,11 +70,17 @@ function SideBar() {
           );
         })}
       </div>
-      <div className="fixed bottom-10 left-8 rounded-2xl flex w-fit bg-gray-200 p-1 ">
-        <SettingsIcon sx={{ fontSize: 40, color: "#1a1a1a" }} className="" />
-      </div>
+    </Box>
+  );
+
+  return (
+    <div>
+      <Button onClick={toggleDrawer(true)}>
+        <MenuIcon className="text-black w-12" />
+      </Button>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
     </div>
   );
 }
-
-export default SideBar;

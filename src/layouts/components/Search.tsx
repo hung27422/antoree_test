@@ -33,7 +33,7 @@ function Search() {
         onClickOutside={handleHideSearch}
         render={(attrs) => (
           <div
-            className="box bg-white w-[420px] shadow-gray-400 shadow rounded-md p-2"
+            className="box bg-white w-[200px] md:w-[420px] shadow-gray-400 shadow rounded-md p-2"
             tabIndex={-1}
             {...attrs}
           >
@@ -75,7 +75,7 @@ function Search() {
           </div>
         )}
       >
-        <div className="flex items-center h-10 w-[420px] gap-2 border-2 border-[#d0d3d3] rounded-2xl px-3 py-2 hover:border-[#444] transition-colors duration-200 ease-in-out">
+        <div className="flex items-center h-10 w-[200px] md:w-[420px] gap-2 border-2 border-[#d0d3d3] rounded-2xl px-3 py-2 hover:border-[#444] transition-colors duration-200 ease-in-out">
           <SearchIcon className="opacity-70" />
           <input
             type="search"

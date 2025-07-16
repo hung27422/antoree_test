@@ -8,7 +8,7 @@ const infoStudents = [
     name: "Nguyễn Văn Toàn",
     image: "https://giasudatviet.com/uploads/images/gia_su_lop_4.jpg",
     review:
-      "Con tôi học lớp 4, học gia sư ở đây,Quả là thành công rực rỡ! Không những con tôi được luyện tiếng Anh mà tôi còn thấy con tôi tự tin hơn với khả năng tiếng Anh của mình.",
+      "Con tôi học lớp 4, học gia sư ở đây. Quả là thành công rực rỡ! Không những con tôi được luyện tiếng Anh mà tôi còn thấy con tôi tự tin hơn với khả năng tiếng Anh của mình.",
   },
   {
     id: 2,
@@ -42,37 +42,51 @@ const infoStudents = [
       "Tôi thấy cách học tiếng Anh của mình đã cải thiện đáng kể. Tôi thậm chí đã tham gia vài buổi phỏng vấn bằng tiếng Anh - điều mà vài tháng trước đây tưởng chừng như không thể.",
   },
 ];
+
 function SliderReview() {
   const settings = {
-    className: "center",
-    centerMode: true,
     infinite: true,
-    centerPadding: "80px",
-    slidesToShow: 3,
     speed: 500,
-    m: 4,
-    borderRadius: "10px",
+    centerMode: true,
+    centerPadding: "20px",
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 1024, // Tablet
+        settings: {
+          slidesToShow: 2,
+          centerPadding: "10px",
+        },
+      },
+      {
+        breakpoint: 640, // Mobile
+        settings: {
+          slidesToShow: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
+
   return (
-    <div className="slider-container rounded-md overflow-hidden px-8">
+    <div className="slider-container px-2 py-4 sm:px-4 md:px-8">
       <Slider {...settings}>
-        {infoStudents.map((student) => {
-          return (
-            <div key={student.id} className="bg-gray-300 rounded-md p-2 mr-5 h-[370px] w-[600px]">
-              <div>
-                <img
-                  className="w-full h-[200px] object-cover rounded-lg"
-                  src={student.image}
-                  alt="img-user"
-                />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold my-2">{student.name}</h3>
-                <span>{student.review}</span>
-              </div>
+        {infoStudents.map((student) => (
+          <div
+            key={student.id}
+            className="bg-white shadow-lg rounded-xl p-4 mx-2 h-[360px] flex flex-col justify-between"
+          >
+            <img
+              src={student.image}
+              alt={student.name}
+              className="w-full h-44 object-cover rounded-lg mb-4"
+            />
+            <div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">{student.name}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed line-clamp-5">{student.review}</p>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </Slider>
     </div>
   );

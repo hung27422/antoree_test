@@ -30,9 +30,9 @@ function CourseCard({ dataTutor, saveToHistory }: CourseCardProps) {
     }
   };
   return (
-    <div className="aspect-video w-full cursor-pointer">
+    <div className="flex flex-col items-center justify-center aspect-video w-full cursor-pointer">
       <iframe
-        width="300"
+        width="320"
         height="170"
         src={`https://www.youtube.com/embed/${dataTutor.introductionVideoId}`}
         title="YouTube video player"
@@ -41,7 +41,7 @@ function CourseCard({ dataTutor, saveToHistory }: CourseCardProps) {
         allowFullScreen
         className="rounded-t-2xl"
       ></iframe>
-      <div className="flex flex-col bg-gray-200 w-[300px] px-5 py-4 gap-3 rounded-b-2xl group">
+      <div className="flex flex-col bg-gray-200 w-[320px] px-5 py-4 gap-3 rounded-b-2xl group">
         <div className="flex items-center justify-between">
           <span className="font-semibold text-lg">{dataTutor.specialty}</span>
           <div onClick={handleFavoriteToggle} className="relative group cursor-pointer w-fit">
