@@ -31,7 +31,7 @@ function CourseCard({ dataTutor }: CourseCardProps) {
           </div>
         </div>
         <span className="text-base text-gray-800">
-          Học phí: {dataTutor.pricePerHour} VNĐ / Giờ{" "}
+          Học phí: {dataTutor.price.toLocaleString()} VNĐ / Giờ{" "}
         </span>
         <div className="mt-1 flex justify-between items-center">
           <div className="flex items-center gap-2">

@@ -4,6 +4,7 @@ import { SWRConfig } from "swr";
 import "./index.css";
 import App from "./App.tsx";
 import api from "./utils/api.ts";
+import AppContextProvider from "./context/AppContextProvider.tsx";
 
 const fetcher = (url: string) => api.get(url).then((res) => res.data);
 createRoot(document.getElementById("root")!).render(
@@ -17,7 +18,9 @@ createRoot(document.getElementById("root")!).render(
         shouldRetryOnError: false,
       }}
     >
-      <App />
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
     </SWRConfig>
   </StrictMode>
 );

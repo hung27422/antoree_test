@@ -2,10 +2,10 @@ export interface Tutor {
   id: number;
   name: string;
   specialty: string;
-  pricePerHour: number;
+  price: number;
   avatar: string;
   introductionVideoId: string;
-  language: string; 
+  language: string;
   rating: number;
   reviews: number;
   description: string;

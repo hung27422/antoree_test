@@ -19,7 +19,7 @@ function SelectLanguages({ languages, value, onChange }: SelectLanguagesProps) {
     >
       <option value="">-- Chọn ngôn ngữ --</option>
       {languages.map((lang) => (
-        <option key={lang.id} value={lang.id}>
+        <option key={lang.id} value={lang.slug}>
           {lang.name}
         </option>
       ))}
