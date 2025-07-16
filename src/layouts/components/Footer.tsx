@@ -1,4 +1,4 @@
-import Logo from "../assets/img/logo.jpeg";
+import Logo from "../../assets/img/logo.jpeg";
 function Footer() {
   return (
     <div className="bg-[#181821] text-[#a9b3bb] py-16 px-30  text-sm font-thin">

@@ -1,6 +1,6 @@
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import SideBar from "./Sidebar";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import SideBar from "./components/Sidebar";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
