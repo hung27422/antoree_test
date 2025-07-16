@@ -16,7 +16,7 @@ function HomePage() {
   const totalPages = Math.ceil(((dataTutors?.length ?? 0) + 1) / 8) || 1;
 
   return (
-    <div>
+    <div className="z-10">
       <div>
         <HomeHeader />
       </div>

@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Button from "../components/ui/Button";
 function Navbar() {
   return (
-    <div className="h-16 border-b bg-white border-[#e8ebed] flex items-center justify-between px-4 z-20">
+    <div className="h-16 border-b bg-white border-[#e8ebed] flex items-center justify-between px-4 z-50">
       <div className="flex items-center gap-2">
         <img src={Logo} alt="Logo" className="size-12" />
         <p className="text-base font-semibold">Thành thạo bất kì ngôn ngữ nào</p>
