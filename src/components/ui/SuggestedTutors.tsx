@@ -32,7 +32,17 @@ function SuggestedTutors() {
   const { data: suggestedTutors, isLoading } = useSWR<ITutor[]>(
     show && topLanguage ? `/tutors?language=${topLanguage}` : null
   );
-
+  const SkeletonCard = () => {
+    return (
+      <div className="animate-pulse flex gap-4 p-3 border rounded-lg shadow-sm">
+        <div className="w-16 h-16 bg-gray-300 rounded-full" />
+        <div className="flex-1 space-y-2">
+          <div className="w-3/4 h-4 bg-gray-300 rounded" />
+          <div className="w-1/2 h-4 bg-gray-300 rounded" />
+        </div>
+      </div>
+    );
+  };
   return (
     <>
       {/* Nút gợi ý góc dưới phải */}
@@ -47,13 +57,22 @@ function SuggestedTutors() {
       {show && (
         <div className="fixed bottom-20 right-4 w-[350px] max-h-[500px] overflow-y-auto bg-white shadow-2xl shadow-gray-800 rounded-xl p-4 z-50">
           <h2 className="text-lg font-bold mb-3">Sản phẩm gợi ý:</h2>
-          {isLoading && <p>Đang tải dữ liệu...</p>}
-          {!isLoading && suggestedTutors?.length === 0 && <p>Không có gợi ý phù hợp.</p>}
-          <div className="flex flex-col gap-3">
-            {suggestedTutors?.map((tutor) => (
-              <CourseCard key={tutor.id} dataTutor={tutor} saveToHistory={saveToHistory} />
-            ))}
-          </div>
+
+          {isLoading ? (
+            <div className="flex flex-col gap-3">
+              {Array.from({ length: 3 }).map((_, idx) => (
+                <SkeletonCard key={idx} />
+              ))}
+            </div>
+          ) : suggestedTutors?.length === 0 ? (
+            <p>Không có gợi ý phù hợp.</p>
+          ) : (
+            <div className="flex flex-col gap-3">
+              {suggestedTutors?.map((tutor) => (
+                <CourseCard key={tutor.id} dataTutor={tutor} saveToHistory={saveToHistory} />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>
