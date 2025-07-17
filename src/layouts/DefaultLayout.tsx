@@ -1,3 +1,5 @@
+import ChatbotButton from "../components/ui/ChatbotButton";
+import SuggestedTutors from "../components/ui/SuggestedTutors";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import SideBar from "./components/Sidebar";
@@ -28,6 +30,11 @@ function DefaultLayout({ children }: DefaultLayoutProps) {
       {/* Footer */}
       <div>
         <Footer />
+      </div>
+      {/* Gợi ý sản phẩm và chat box */}
+      <div className="">
+        <SuggestedTutors />
+        <ChatbotButton />
       </div>
     </div>
   );

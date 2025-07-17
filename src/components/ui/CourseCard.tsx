@@ -4,12 +4,13 @@ import GradeIcon from "@mui/icons-material/Grade";
 import type { ITutor } from "../../types/tutors";
 import ModalDetailCourse from "./ModalDetailCourse";
 import useFavorite from "../../hooks/useFavorite";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 interface CourseCardProps {
   dataTutor: ITutor;
   saveToHistory: (tutor: ITutor) => void;
 }
 function CourseCard({ dataTutor, saveToHistory }: CourseCardProps) {
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const { addFavorite, deleteFavorite, dataFavorite } = useFavorite();
 
   const valueFavorite = {
@@ -31,16 +32,24 @@ function CourseCard({ dataTutor, saveToHistory }: CourseCardProps) {
   };
   return (
     <div className="flex flex-col items-center justify-center aspect-video w-full cursor-pointer">
-      <iframe
-        width="320"
-        height="170"
-        src={`https://www.youtube.com/embed/${dataTutor.introductionVideoId}`}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="rounded-t-2xl"
-      ></iframe>
+      <div className="relative w-[320px] h-[170px]">
+        {isVideoLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-300 rounded-t-2xl animate-pulse z-10">
+            <span className="text-gray-600 text-sm">Đang tải video...</span>
+          </div>
+        )}
+        <iframe
+          width="320"
+          height="170"
+          src={`https://www.youtube.com/embed/${dataTutor.introductionVideoId}`}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="rounded-t-2xl w-full h-full"
+          onLoad={() => setIsVideoLoading(false)}
+        ></iframe>
+      </div>
       <div className="flex flex-col bg-gray-200 w-[320px] px-5 py-4 gap-3 rounded-b-2xl group">
         <div className="flex items-center justify-between">
           <span className="font-semibold text-lg">{dataTutor.specialty}</span>

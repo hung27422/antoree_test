@@ -5,15 +5,20 @@ import SliderReview from "../components/ui/SliderReview.tsx";
 import { Link } from "react-router-dom";
 import configs from "../configs/configs.ts";
 import useHistoryViewedTutors from "../components/hooks/useHistoryViewedTutors.tsx";
-import SuggestedTutors from "../components/ui/SuggestedTutors.tsx";
 
 function HomePage() {
   const { historyViewed, saveToHistory } = useHistoryViewedTutors();
 
-  const { dataTutors } = useTutors({
+  const { dataTutors, isLoadingCourses } = useTutors({
     page: 1,
     limit: 8,
   });
+
+  const renderSkeleton = (count: number) => {
+    return Array.from({ length: count }).map((_, i) => (
+      <div key={i} className="animate-pulse h-48 bg-gray-200 rounded-md col-span-1"></div>
+    ));
+  };
 
   return (
     <div className="z-10">
@@ -23,7 +28,7 @@ function HomePage() {
 
       {/* Lịch sử đã xem */}
       {historyViewed.length > 0 && (
-        <div className="mt-8 px-4 sm:px-6 md:px-8 ">
+        <div className="mt-8 px-4 sm:px-6 md:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">Lịch sử đã xem gần đây</h2>
           <div className="py-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {historyViewed.map((tutor) => (
@@ -46,9 +51,11 @@ function HomePage() {
         </div>
 
         <div className="py-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {dataTutors?.map((tutor) => (
-            <CourseCard key={tutor.id} dataTutor={tutor} saveToHistory={saveToHistory} />
-          ))}
+          {isLoadingCourses
+            ? renderSkeleton(8)
+            : dataTutors?.map((tutor) => (
+                <CourseCard key={tutor.id} dataTutor={tutor} saveToHistory={saveToHistory} />
+              ))}
         </div>
       </div>
 
@@ -59,9 +66,6 @@ function HomePage() {
           <SliderReview />
         </div>
       </div>
-
-      {/* Gợi ý sản phẩm */}
-      <SuggestedTutors />
     </div>
   );
 }
