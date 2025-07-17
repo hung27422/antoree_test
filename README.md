@@ -1,69 +1,44 @@
-# React + TypeScript + Vite
+# 📦 React + TypeScript + Vite Starter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Đây là một dự án khởi tạo sử dụng **React**, **TypeScript**, và **Vite**. Cung cấp môi trường phát triển hiện đại với khả năng HMR (Hot Module Replacement) và tốc độ build nhanh.
 
-Currently, two official plugins are available:
+## 🛠️ Công nghệ sử dụng
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ React
+- 📘 TypeScript
+- ⚡ Vite
+- 💅 Tailwind CSS (nếu có)
+- 🔍 ESLint & Prettier
 
-## Expanding the ESLint configuration
+## 🚀 Cài đặt
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Trước khi bắt đầu, đảm bảo bạn đã cài đặt:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [Node.js](https://nodejs.org/) (>= 16)
+- [npm](https://www.npmjs.com/) hoặc [yarn](https://yarnpkg.com/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 1. Clone repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/hung27422/antoree_test.git
+cd antoree_test
 ```
+### 2. Cài đặt dependencies
+npm install
+# hoặc
+yarn install
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+💻 Chạy ở chế độ development
+npm run dev
+# hoặc
+yarn dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🔨 Build production
+npm run build
+# hoặc
+yarn build
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🔍 Preview bản build
+npm run preview
+# hoặc
+yarn preview

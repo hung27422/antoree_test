@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App.tsx";
 import api from "./utils/api.ts";
 import AppContextProvider from "./context/AppContextProvider.tsx";
+import { SnackbarProvider } from "notistack";
 
 const fetcher = (url: string) => api.get(url).then((res) => res.data);
 createRoot(document.getElementById("root")!).render(
@@ -19,7 +20,14 @@ createRoot(document.getElementById("root")!).render(
       }}
     >
       <AppContextProvider>
-        <App />
+        <SnackbarProvider
+          variant="success"
+          maxSnack={3}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          autoHideDuration={3000}
+        >
+          <App />
+        </SnackbarProvider>
       </AppContextProvider>
     </SWRConfig>
   </StrictMode>

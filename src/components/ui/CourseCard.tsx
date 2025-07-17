@@ -5,6 +5,8 @@ import type { ITutor } from "../../types/tutors";
 import ModalDetailCourse from "./ModalDetailCourse";
 import useFavorite from "../../hooks/useFavorite";
 import { useMemo, useState } from "react";
+import { enqueueSnackbar } from "notistack";
+
 interface CourseCardProps {
   dataTutor: ITutor;
   saveToHistory: (tutor: ITutor) => void;
@@ -26,8 +28,10 @@ function CourseCard({ dataTutor, saveToHistory }: CourseCardProps) {
   const handleFavoriteToggle = async () => {
     if (favorite && favorite.id !== undefined) {
       await deleteFavorite(String(favorite.id)); // Xóa nếu đã yêu thích
+      await enqueueSnackbar("Đã xóa khỏi yêu thích");
     } else {
       await addFavorite(valueFavorite); // Thêm nếu chưa
+      await enqueueSnackbar("Đã thêm vào yêu thích");
     }
   };
   return (
