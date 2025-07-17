@@ -23,22 +23,27 @@ Trước khi bắt đầu, đảm bảo bạn đã cài đặt:
 git clone https://github.com/hung27422/antoree_test.git
 cd antoree_test
 ```
+
 ### 2. Cài đặt dependencies
+
+```bash
 npm install
-# hoặc
+hoặc
 yarn install
+```
 
 💻 Chạy ở chế độ development
+
+```bash
 npm run dev
-# hoặc
+hoặc
 yarn dev
+```
 
 🔨 Build production
-npm run build
-# hoặc
-yarn build
 
-🔍 Preview bản build
-npm run preview
-# hoặc
-yarn preview
+```bash
+npm run build
+hoặc
+yarn build
+```
